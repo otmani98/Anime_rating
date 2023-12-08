@@ -21,7 +21,7 @@ class AnimeResource extends JsonResource
             'studio' => $this->studio,
             'genres' => $this->genres,
             'rating' => $this->ratings,
-            'favorites_count' => $this->usersFav,
+            'favorites_count' => $this->favorites->count(),
             'release_date' => $this->release_date,
         ];
     }

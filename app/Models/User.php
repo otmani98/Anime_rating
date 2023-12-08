@@ -24,7 +24,8 @@ class User extends Authenticatable
         'userName',
         'email',
         'password',
-        'role_id'
+        'role_id',
+        'active'
     ];
 
     /**
@@ -54,11 +55,11 @@ class User extends Authenticatable
 
     public function ratings()
     {
-        return $this->hasMany(AnimeRating::class, 'user_id');
+        return $this->belongsToMany(Anime::class, 'anime_ratings', 'user_id', 'anime_id')->withPivot('rating');
     }
 
     public function favorites()
     {
-        return $this->hasMany(AnimeFav::class, 'user_id');
+        return $this->belongsToMany(Anime::class, 'anime_favs', 'user_id', 'anime_id');
     }
 }

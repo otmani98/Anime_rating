@@ -36,11 +36,11 @@ class Anime extends Model
 
     public function ratings()
     {
-        return $this->hasMany(AnimeRating::class, 'anime_id');
+        return $this->belongsToMany(User::class, 'anime_ratings', 'anime_id', 'user_id')->withPivot('rating');
     }
 
-    public function usersFav()
+    public function favorites()
     {
-        return $this->hasMany(AnimeFav::class, 'anime_id');
+        return $this->belongsToMany(User::class, 'anime_favs', 'anime_id', 'user_id');
     }
 }

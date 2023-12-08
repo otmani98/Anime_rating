@@ -10,7 +10,7 @@ Route::get('studios/{id}', [StudioController::class, 'show'])->where('id', '[0-9
 
 
 //protected routes for admin
-Route::group(['middleware' => ['auth:sanctum'. 'isadmin']], function ()  {
+Route::group(['middleware' => ['auth:sanctum', 'isadmin']], function ()  {
 
     Route::post('studios', [StudioController::class, 'store']);
 

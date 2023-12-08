@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Anime;
+use App\Models\AnimeFav;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Resources\AnimeResource;
@@ -16,7 +18,6 @@ class AnimeController extends Controller
      */
     public function index(Request $request)
     {
-        
         $animes = Anime::paginate(($request->pageSize) ? $request->pageSize : 20);
 
         return AnimeResource::collection($animes);

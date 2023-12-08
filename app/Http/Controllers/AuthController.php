@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Exceptions\GeneralJsonException;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Resources\AuthResource;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\AuthLoginRequest;
+use App\Exceptions\GeneralJsonException;
 use App\Http\Requests\AuthRegisterRequest;
 
 class AuthController extends Controller
@@ -39,7 +40,7 @@ class AuthController extends Controller
      * Login (account user).
     **/
 
-    public function login(Request $request)
+    public function login(AuthLoginRequest $request)
     {
         $fields = $request->only([
             'email',
