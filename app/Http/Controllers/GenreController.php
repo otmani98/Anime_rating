@@ -23,6 +23,7 @@ class GenreController extends Controller
      */
     public function store(Request $request)
     {
+        $request['tag'] = ucfirst($request->tag);
         $created = Genre::create($request->all());
 
         return response()->json(['data' => $created]);

@@ -23,6 +23,8 @@ Route::prefix('v1')->group(function ()
     require __DIR__ . '/api/v1/studios.php';
     require __DIR__ . '/api/v1/animes.php';
     require __DIR__ . '/api/v1/genres.php';
+    require __DIR__ . '/api/v1/favorites_ratings.php';
+
 });
 
 

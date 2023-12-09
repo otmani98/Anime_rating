@@ -18,41 +18,8 @@ class UserController extends Controller
     {
         $users = User::paginate(($request->pageSize) ? $request->pageSize : 20);
 
-        // return AnimeResource::collection($animes);
+        return response()->json(['data' => $users]);
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
-
 
     /**
      * change role of user from user to admin or or vice versa

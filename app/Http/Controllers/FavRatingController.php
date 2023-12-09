@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\GeneralJsonException;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Resources\RatingResource;
 
 class FavRatingController extends Controller
 {
@@ -47,18 +50,28 @@ class FavRatingController extends Controller
     public function getMyRatings(Request $request)
     {
         $user = User::find(auth()->user()->id);
-
-        return response()->json(['data' => $user->ratings]);
+        return RatingResource::collection($user->ratings);
     }
 
 
-    public function addRatingToAnime(Request $request) 
+    public function addOrUpdateRatingToAnime(Request $request) 
     {
         $user = User::find(auth()->user()->id);
 
-        $user->ratings()->syncWithoutDetaching(array($request->only(['anime_id', 'rating'])));
+        try {
+            $user->ratings()->syncWithoutDetaching(array($request->only(['anime_id', 'rating'])));
+        } catch (\Throwable $th) {
+            DB::table('anime_ratings')
+            ->where('user_id', auth()->user()->id)
+            ->where('anime_id', $request->anime_id)
+            ->update(['rating' => $request->rating]);
+        }
+        
 
-        return response()->json(['data' => $user->ratings]);
+        $result = $user->ratings->where('id', $request->anime_id);
+
+        return new RatingResource($result[0]);
+
     }
 
     public function destroyRatingOfAnime(Request $request) 
