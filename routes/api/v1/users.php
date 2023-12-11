@@ -18,7 +18,7 @@ Route::group(['middleware' => ['auth:sanctum']], function ()  {
 //protected routes with auth for admin
 Route::group(['middleware' => ['auth:sanctum', 'isadmin']], function ()  {
 
-    Route::patch('users/{userName}/roles/{role}', [UserController::class, 'changeRule'])->whereAlphaNumeric('userName')->whereNumber('role');
+    Route::patch('users/{userName}/roles/{role}', [UserController::class, 'changeRule'])->whereAlphaNumeric('userName')->where('role', '[1-2]');
 
     Route::patch('users/{userName}/active/{status}', [UserController::class, 'toggleUserActive'])->whereAlphaNumeric('userName')->where('status', '[0-1]');
 

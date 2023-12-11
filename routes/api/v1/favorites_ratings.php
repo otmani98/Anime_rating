@@ -6,8 +6,6 @@ use App\Http\Controllers\FavRatingController;
 //protected routes with auth
 Route::group(['middleware' => ['auth:sanctum']], function ()  {
 
-    Route::post('logout', [AuthController::class, 'logout']);
-
     Route::get('animefavorites', [FavRatingController::class, 'getMyFavoritesAnime']);
 
     Route::post('animefavorites/{animeid}', [FavRatingController::class, 'addAnimeToMyFavorites'])->where('animeid', '[0-9]+');

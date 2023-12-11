@@ -32,7 +32,9 @@ class UserController extends Controller
             throw new GeneralJsonException('There is no user with this username', 404);
         }
 
-        $user->update(['role_id' => $rule]);
+        if ($rule === 1 || $rule === 2) {
+            $user->update(['role_id' => $rule]);
+        }
 
         return response()->json(['data' => $user]);
     }

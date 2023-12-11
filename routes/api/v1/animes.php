@@ -8,15 +8,6 @@ Route::get('animes', [AnimeController::class, 'index']);
 
 Route::get('animes/{id}', [AnimeController::class, 'show'])->where('id', '[0-9]+');
 
-
-//protected routes with auth
-Route::group(['middleware' => ['auth:sanctum']], function ()  {
-
-
-});
-
-
-
 //protected routes for admin
 Route::group(['middleware' => ['auth:sanctum', 'isadmin']], function ()  {
 
