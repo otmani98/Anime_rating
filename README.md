@@ -6,13 +6,13 @@ This is a backend project built on Laravel (v10)/PHP. It consists of RESTful API
 
 -   Authentication with sunctum
 -   Authorization (admin - user)
--   CRUDS for genres (admin permission)
--   CRUDS for studios (admin permission)
--   CRUDS for animes (admin permission)
+-   CRUD for genres (admin permission)
+-   CRUD for studios (admin permission)
+-   CRUD for animes (admin permission)
 -   Block/disblock users account (admin permission)
 -   Change users role from admin vice versa (admin permission)
--   CRUDS Favorites list (user permission)
--   CRUDS Rating list (user permission)
+-   CRUD Favorites list (user permission)
+-   CRUD Rating list (user permission)
 
 ## Database diagram
 
